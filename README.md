@@ -8,9 +8,6 @@ O VisitaJá é uma API REST desenvolvida para gerenciar e otimizar o agendamento
 * **Visão do Administrador:** Gestão e cadastro de leilões e seus respectivos pátios, definição da capacidade de visitantes por turno, controle das confirmações de agendamento e emissão de relatório.
 
 ## Estrutura de Pastas
-
-O projeto aplica a arquitetura em camadas para garantir a separação de responsabilidades, facilidade de manutenção e escalabilidade:
-
 ```text
 src/main/java/br/com/visitaja
 │
