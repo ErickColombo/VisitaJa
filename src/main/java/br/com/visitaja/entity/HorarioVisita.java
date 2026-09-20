@@ -3,6 +3,7 @@ package br.com.visitaja.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_horario_visita")
@@ -28,4 +29,9 @@ public class HorarioVisita {
     @ManyToOne
     @JoinColumn(name = "patio_id", nullable = false)
     private Patio patio;
+
+    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL)
+    private List<Agendamento> agendamentos;
+
+
 }

@@ -23,4 +23,8 @@ public class Agendamento {
     private LocalDateTime dataRegistro;
     private String status;
 
+    @ManyToOne
+    @JoinColumn(name = "horario_id", nullable = false)
+    private HorarioVisita horario;
+
 }
