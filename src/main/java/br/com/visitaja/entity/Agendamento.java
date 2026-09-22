@@ -1,5 +1,6 @@
 package br.com.visitaja.entity;
 
+import br.com.visitaja.enums.StatusAgendamento;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,10 @@ public class Agendamento {
     private Long id;
 
     private LocalDateTime dataRegistro;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private StatusAgendamento status;
 
     @ManyToOne
     @JoinColumn(name = "horario_id", nullable = false)

@@ -1,5 +1,6 @@
 package br.com.visitaja.entity;
 
+import br.com.visitaja.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,8 @@ public class Usuario {
 
     private String user;
     private String senha;
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Role role;
 }

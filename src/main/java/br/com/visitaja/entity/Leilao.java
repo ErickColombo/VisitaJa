@@ -1,5 +1,6 @@
 package br.com.visitaja.entity;
 
+import br.com.visitaja.enums.StatusLeilao;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,8 +23,9 @@ public class Leilao {
     @Column(length = 500)
     private String descricao;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private String status; // Ex: ATIVO, FINALIZADO
+    private StatusLeilao status;
 
     @OneToMany(mappedBy = "leilao", cascade = CascadeType.ALL)
     private List<Patio> patios;
