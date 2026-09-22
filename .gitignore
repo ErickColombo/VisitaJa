@@ -1,6 +1,5 @@
 ### Config ###
 .env
-backend/.env.example
 !backend/.env.example
 
 
