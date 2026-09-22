@@ -5,21 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
-@NoArgsConstructor
+@Table(name = "tb_usuario")
 @Getter
 @Setter
-@Table(name = "tb_usuario")
+@NoArgsConstructor
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String user;
     private String senha;
-    private String role; //Tipo de usuário no sistema.
-
-
+    private String role;
 }

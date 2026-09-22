@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Leilao {
 
     @Id
@@ -26,8 +25,6 @@ public class Leilao {
     @Column(nullable = false, length = 20)
     private String status; // Ex: ATIVO, FINALIZADO
 
-    // Relacionamento 1:N (Um leilão tem vários pátios)
-    // mappedBy indica que a chave estrangeira está na classe Patio
     @OneToMany(mappedBy = "leilao", cascade = CascadeType.ALL)
     private List<Patio> patios;
 }

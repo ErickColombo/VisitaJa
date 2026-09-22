@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Patio {
 
     @Id
@@ -21,7 +20,6 @@ public class Patio {
     @Column(nullable = false, length = 255)
     private String endereco;
 
-    // Vários pátios pertencem a um Leilão)
     @ManyToOne
     @JoinColumn(name = "leilao_id", nullable = false)
     private Leilao leilao;
