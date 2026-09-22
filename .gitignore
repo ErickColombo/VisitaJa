@@ -1,13 +1,13 @@
 ### Config ###
 .env
-.env.*
-!.env.example
+backend/.env.example
+!backend/.env.example
 
 
 
 HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
