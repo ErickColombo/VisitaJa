@@ -15,6 +15,7 @@ src/main/java/br/com/visitaja
 ├── service/
 ├── repository/
 ├── entity/
+├── enums/
 ├── dto/
 ├── exception/
 ├── security/
