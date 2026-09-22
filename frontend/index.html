@@ -1,49 +1,675 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisitaJá</title>
+<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisitaJá — Agendamento de visitas</title>
 
     <style>
+        :root {
+            --primary: #155eef;
+            --primary-dark: #0d47c9;
+            --text: #172033;
+            --muted: #667085;
+            --background: #f8fafc;
+            --white: #ffffff;
+            --border: #e4e7ec;
+            --success: #12b76a;
+        }
+
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            color: #1f2937;
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .container {
-            text-align: center;
-            padding: 40px;
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* Header */
+
+        header {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eef0f3;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .header-content {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+
+            font-size: 20px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #475467;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-header {
+            padding: 11px 18px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-header:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* Hero */
+
+        .hero {
+            background:
+                    radial-gradient(circle at 80% 20%, rgba(21, 94, 239, 0.10), transparent 32%),
+                    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+            padding: 90px 0 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 12px;
+            border-radius: 999px;
+
+            background: #eff6ff;
+            color: var(--primary);
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success);
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-            color: #2563eb;
+            margin: 20px 0 18px;
+
+            font-size: clamp(40px, 5vw, 62px);
+            line-height: 1.05;
+            letter-spacing: -2px;
         }
 
-        p {
+        h1 span {
+            color: var(--primary);
+        }
+
+        .hero-description {
+            max-width: 580px;
+
+            margin: 0;
+
+            color: var(--muted);
+            font-size: 19px;
+            line-height: 1.65;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+            padding: 0 22px;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+        }
+
+        /* Card */
+
+        .booking-card {
+            padding: 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            background: white;
+
+            box-shadow:
+                    0 20px 50px rgba(16, 24, 40, 0.10);
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .card-description {
+            margin: 8px 0 24px;
+
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+
+            font-size: 13px;
+            font-weight: 700;
+            color: #344054;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 48px;
+
+            padding: 0 14px;
+
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 15px;
+            color: var(--text);
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.10);
+        }
+
+        .btn-full {
+            width: 100%;
+            border: 0;
+            margin-top: 6px;
+        }
+
+        .card-footer {
+            margin-top: 18px;
+
+            text-align: center;
+
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Benefits */
+
+        .benefits {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            max-width: 650px;
+            margin: 0 auto 45px;
+
+            text-align: center;
+        }
+
+        .section-header h2 {
+            margin: 0 0 12px;
+
+            font-size: 34px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            margin: 0;
+
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .benefit {
+            padding: 28px;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: white;
+        }
+
+        .benefit-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 10px;
+
+            background: #eff6ff;
+            color: var(--primary);
+
             font-size: 20px;
-            color: #6b7280;
+        }
+
+        .benefit h3 {
+            margin: 0 0 9px;
+
+            font-size: 18px;
+        }
+
+        .benefit p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+
+        .cta {
+            padding: 70px 0;
+            background: #0f172a;
+            color: white;
+        }
+
+        .cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .cta h2 {
+            margin: 0 0 10px;
+
+            font-size: 32px;
+        }
+
+        .cta p {
+            margin: 0;
+
+            color: #cbd5e1;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 25px 0;
+
+            background: #0b1220;
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 850px) {
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .container,
+            .header-content {
+                width: min(100% - 28px, 1120px);
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .booking-card {
+                padding: 22px;
+            }
         }
     </style>
-</head>
 
-<body>
-<main class="container">
-    <h1>VisitaJá</h1>
-    <p>Sistema de agendamento de visitas</p>
+</head> <body> <header> <div class="header-content">
+    <a href="#" class="logo">
+        <span class="logo-icon">✓</span>
+        VisitaJá
+    </a>
 
-</main>
-</body>
-</html>
+    <nav>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#agendamento" class="btn-header">Agendar visita</a>
+        <!--
+        <a href="#beneficios">Benefícios</a>
+        <a href="#contato">Contato</a>
+        -->
+    </nav>
+
+</div>
+
+</header> <main>
+    <section class="hero" id="agendamento">
+
+        <div class="container hero-content">
+
+            <div>
+
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Agendamento simples e rápido
+                </div>
+
+                <h1>
+                    Agende sua visita de forma
+                    <span>simples e segura.</span>
+                </h1>
+
+                <p class="hero-description">
+                    O VisitaJá facilita o agendamento e o controle
+                    de visitas. Escolha o local, consulte os horários
+                    disponíveis e faça seu agendamento online.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#agendar" class="btn btn-primary">
+                        Quero agendar
+                    </a>
+
+                    <a href="#como-funciona" class="btn btn-secondary">
+                        Saiba como funciona
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="booking-card">
+
+                <h2 class="card-title">
+                    Encontre sua visita
+                </h2>
+
+                <p class="card-description">
+                    Informe os dados abaixo para consultar
+                    disponibilidade e realizar seu agendamento.
+                </p>
+
+                <form id="booking-form">
+
+                    <div class="form-group">
+                        <label for="name">
+                            Nome
+                        </label>
+
+                        <input
+                                id="name"
+                                type="text"
+                                placeholder="Digite seu nome"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="code">
+                            Código da visita
+                        </label>
+
+                        <input
+                                id="code"
+                                type="text"
+                                placeholder="Ex.: VIS-12345"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">
+                            Data desejada
+                        </label>
+
+                        <input
+                                id="date"
+                                type="date"
+                        >
+                    </div>
+
+                    <button
+                            type="submit"
+                            class="btn btn-primary btn-full"
+                    >
+                        Consultar disponibilidade
+                    </button>
+
+                </form>
+
+                <div class="card-footer">
+                    Sistema online • VisitaJá
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="benefits" id="como-funciona">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>
+                    Como funciona?
+                </h2>
+
+                <p>
+                    Um processo simples para tornar o controle
+                    de visitas mais organizado.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-grid">
+
+                <article class="benefit">
+
+                    <div class="benefit-icon">
+                        01
+                    </div>
+
+                    <h3>
+                        Escolha a visita
+                    </h3>
+
+                    <p>
+                        Encontre o local e consulte os horários
+                        disponíveis para visitação.
+                    </p>
+
+                </article>
+
+
+                <article class="benefit">
+
+                    <div class="benefit-icon">
+                        02
+                    </div>
+
+                    <h3>
+                        Faça o agendamento
+                    </h3>
+
+                    <p>
+                        Informe seus dados e escolha o melhor
+                        horário para realizar sua visita.
+                    </p>
+
+                </article>
+
+
+                <article class="benefit">
+
+                    <div class="benefit-icon">
+                        03
+                    </div>
+
+                    <h3>
+                        Pronto!
+                    </h3>
+
+                    <p>
+                        Seu agendamento fica registrado e você
+                        poderá acompanhar suas visitas.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main> <footer id="contato">
+    <div class="container footer-content">
+
+    <span>
+        © 2026 VisitaJá
+    </span>
+
+        <span>
+        Sistema de agendamento de visitas
+    </span>
+
+    </div>
+
+</footer> <script> document .getElementById("booking-form") .addEventListener("submit", function(event) { event.preventDefault(); alert( "A consulta será integrada ao sistema VisitaJá." ); }); </script> </body> </html>
