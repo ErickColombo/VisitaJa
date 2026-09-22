@@ -28,6 +28,6 @@ public class Visitante {
     @Column(nullable = false, length = 20)
     private String telefone;
 
-    @OneToMany(mappedBy = "visitante", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "visitante", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Agendamento> agendamentos;
 }

@@ -27,6 +27,6 @@ public class Leilao {
     @Column(nullable = false, length = 20)
     private StatusLeilao status;
 
-    @OneToMany(mappedBy = "leilao", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "leilao", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Patio> patios;
 }
