@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class HorarioVisita {
 
     @Id
@@ -30,8 +29,6 @@ public class HorarioVisita {
     @JoinColumn(name = "patio_id", nullable = false)
     private Patio patio;
 
-    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL)
-    private List<Agendamento> agendamentos;
-
-
+    @OneToMany(mappedBy = "horario", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Agendamento> agendamentos;;
 }

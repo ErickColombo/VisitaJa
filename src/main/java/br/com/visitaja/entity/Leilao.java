@@ -1,5 +1,6 @@
 package br.com.visitaja.entity;
 
+import br.com.visitaja.enums.StatusLeilao;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Leilao {
 
     @Id
@@ -23,11 +23,10 @@ public class Leilao {
     @Column(length = 500)
     private String descricao;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private String status; // Ex: ATIVO, FINALIZADO
+    private StatusLeilao status;
 
-    // Relacionamento 1:N (Um leilão tem vários pátios)
-    // mappedBy indica que a chave estrangeira está na classe Patio
-    @OneToMany(mappedBy = "leilao", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "leilao", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Patio> patios;
 }

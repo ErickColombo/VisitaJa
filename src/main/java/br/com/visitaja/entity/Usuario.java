@@ -1,25 +1,29 @@
 package br.com.visitaja.entity;
 
+import br.com.visitaja.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
-@NoArgsConstructor
+@Table(name = "tb_usuario")
 @Getter
 @Setter
-@Table(name = "tb_usuario")
+@NoArgsConstructor
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(nullable = false, unique = true, length = 100)
     private String user;
+
+    @Column(nullable = false)
     private String senha;
-    private String role; //Tipo de usuário no sistema.
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Role role;
 }
