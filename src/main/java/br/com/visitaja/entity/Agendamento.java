@@ -16,10 +16,7 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String cgc;
-    private String email;
-    private Integer telefone;
+
     private LocalDateTime dataRegistro;
     private String status;
 
@@ -27,4 +24,7 @@ public class Agendamento {
     @JoinColumn(name = "horario_id", nullable = false)
     private HorarioVisita horario;
 
+    @ManyToOne
+    @JoinColumn(name = "visitante_id", nullable = false)
+    private Visitante visitante;
 }
