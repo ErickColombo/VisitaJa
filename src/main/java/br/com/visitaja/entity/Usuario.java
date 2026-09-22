@@ -17,7 +17,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true, length = 100)
     private String user;
+
+    @Column(nullable = false)
     private String senha;
 
     @Enumerated(EnumType.STRING)
