@@ -1,5 +1,6 @@
 package br.com.visitaja.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Visitante {
     @Column(nullable = false, length = 20)
     private String telefone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "visitante", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Agendamento> agendamentos;
 }

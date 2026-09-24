@@ -1,5 +1,6 @@
 package br.com.visitaja.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -27,8 +28,10 @@ public class HorarioVisita {
 
     @ManyToOne
     @JoinColumn(name = "patio_id", nullable = false)
+    @JsonIgnore
     private Patio patio;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "horario", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Agendamento> agendamentos;;
 }

@@ -1,4 +1,4 @@
-package br.com.visitaja.visitaja;
+package br.com.visitaja;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
