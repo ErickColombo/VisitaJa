@@ -1,4 +1,4 @@
-# VisitaJá - Sistema de Gestão de Visitação de Leilões
+# VisitaJá - Sistema de Gestão de Visitação de Pátios
 
 O VisitaJá é um sistema desenvolvido para gerenciar e otimizar o agendamento de visitas presenciais a pátios de leilão. Ele funciona como um portal de controle de acesso, permitindo que visitantes reservem horários específicos para examinar os bens antes dos arremates, garantindo organização e previsibilidade no fluxo físico de pessoas.
 
@@ -14,9 +14,20 @@ O repositório é dividido em duas partes principais: a API (Backend) e a Interf
 ```text
 /
 ├── backend/                 
-│   ├── src/main/java/       
-│   ├── src/main/resources/  
-│   └── pom.xml              
-│
+    └── ...            
 └── frontend/
     └── ...
+```
+
+### Backend
+
+API REST responsável pelas regras de negócio, gerenciamento de leilões, pátios, agendamentos, usuários e autenticação/autorização.
+
+### Frontend
+
+Interface web responsável pela interação dos visitantes e administradores com o sistema, permitindo realizar agendamentos, consultar horários e gerenciar as funcionalidades administrativas.
+
+## Documentação
+
+- [Documentação do Backend](./backend/README.md)
+- [Documentação do Frontend](./frontend/README.md)
