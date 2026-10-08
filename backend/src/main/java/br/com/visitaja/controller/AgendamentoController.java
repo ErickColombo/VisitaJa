@@ -49,8 +49,9 @@ public class AgendamentoController {
                 agendamento.getHorario().getDataHora(),
                 agendamento.getHorario().getVagasTotais(),
                 agendamento.getHorario().getVagasDisponiveis(),
-                agendamento.getHorario().getPatio().getId(),   // Adicionado: ID do pátio
-                agendamento.getHorario().getPatio().getNome()  // Adicionado: Nome do pátio
+                agendamento.getHorario().getPatio().getId(),
+                agendamento.getHorario().getPatio().getNome(),
+                agendamento.getHorario().getPatio().getLeilao().getTitulo()
         );
 
         VisitanteResponseDTO visitanteDTO = new VisitanteResponseDTO(
