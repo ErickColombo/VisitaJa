@@ -1,6 +1,7 @@
 package br.com.visitaja.entity;
 
 import br.com.visitaja.enums.StatusLeilao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,6 +30,7 @@ public class Leilao {
     @Column(nullable = false, length = 20)
     private StatusLeilao status;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "leilao", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Patio> patios;
 
