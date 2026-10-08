@@ -22,6 +22,10 @@ public class HorarioVisitaService {
         return horarioVisitaRepository.findByPatioIdAndVagasDisponiveisGreaterThan(patioId, 0);
     }
 
+    public List<HorarioVisita> listarTodosPorPatio(Long patioId) {
+        return horarioVisitaRepository.findByPatioId(patioId);
+    }
+
     @Transactional
     public HorarioVisita criarHorario(HorarioVisitaRequestDTO dto) {
         Patio patio = patioRepository.findById(dto.patioId())
