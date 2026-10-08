@@ -2,6 +2,9 @@ package br.com.visitaja.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tb_patio")
@@ -23,4 +26,8 @@ public class Patio {
     @ManyToOne
     @JoinColumn(name = "leilao_id", nullable = false)
     private Leilao leilao;
+
+    @CreationTimestamp
+    @Column(name = "data_criacao", updatable = false)
+    private LocalDateTime dataCriacao;
 }

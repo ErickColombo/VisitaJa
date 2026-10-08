@@ -3,7 +3,9 @@ package br.com.visitaja.entity;
 import br.com.visitaja.enums.StatusLeilao;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -29,4 +31,8 @@ public class Leilao {
 
     @OneToMany(mappedBy = "leilao", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Patio> patios;
+
+    @CreationTimestamp
+    @Column(name = "data_criacao", updatable = false)
+    private LocalDateTime dataCriacao;
 }

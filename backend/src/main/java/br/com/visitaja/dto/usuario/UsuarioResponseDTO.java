@@ -5,7 +5,7 @@ import br.com.visitaja.enums.Role;
 public record UsuarioResponseDTO(
 
         Long id,
-        String user,
+        String username,
         Role role
 
 ) {}

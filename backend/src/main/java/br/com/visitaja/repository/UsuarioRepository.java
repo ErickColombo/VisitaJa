@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    // Usado pelo Spring Security para validar o login
-    Optional<Usuario> findByUser(String user);
+    Optional<Usuario> findByUsername(String username);
 }
