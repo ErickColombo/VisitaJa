@@ -10,7 +10,7 @@ public class UsuarioMapper {
 
     public static Usuario toEntity(UsuarioRequestDTO dto, String senha) {
         Usuario usuario = new Usuario();
-        usuario.setUser(dto.user());
+        usuario.setUsername(dto.username());
         usuario.setSenha(senha);
         usuario.setRole(dto.role());
         return usuario;
@@ -19,7 +19,7 @@ public class UsuarioMapper {
     public static UsuarioResponseDTO toResponseDTO(Usuario usuario) {
         return new UsuarioResponseDTO(
                 usuario.getId(),
-                usuario.getUser(),
+                usuario.getUsername(),
                 usuario.getRole()
         );
     }
