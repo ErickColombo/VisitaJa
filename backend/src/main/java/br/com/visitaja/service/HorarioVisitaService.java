@@ -1,7 +1,11 @@
 package br.com.visitaja.service;
 
+import br.com.visitaja.dto.horariovisita.HorarioVisitaRequestDTO;
 import br.com.visitaja.entity.HorarioVisita;
+import br.com.visitaja.entity.Patio;
 import br.com.visitaja.repository.HorarioVisitaRepository;
+import br.com.visitaja.repository.PatioRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +16,24 @@ import java.util.List;
 public class HorarioVisitaService {
 
     private final HorarioVisitaRepository horarioVisitaRepository;
+    private final PatioRepository patioRepository;
 
     public List<HorarioVisita> listarHorariosDisponiveisPorPatio(Long patioId) {
-        // Retorna apenas os horários cujo número de vagas disponíveis é maior que 0
         return horarioVisitaRepository.findByPatioIdAndVagasDisponiveisGreaterThan(patioId, 0);
+    }
+
+    @Transactional
+    public HorarioVisita criarHorario(HorarioVisitaRequestDTO dto) {
+        Patio patio = patioRepository.findById(dto.patioId())
+                .orElseThrow(() -> new IllegalArgumentException("Pátio não encontrado com o ID fornecido."));
+
+        HorarioVisita horario = new HorarioVisita();
+        horario.setDataHora(dto.dataHora());
+        horario.setVagasTotais(dto.vagasTotais());
+
+        horario.setVagasDisponiveis(dto.vagasTotais());
+        horario.setPatio(patio);
+
+        return horarioVisitaRepository.save(horario);
     }
 }
