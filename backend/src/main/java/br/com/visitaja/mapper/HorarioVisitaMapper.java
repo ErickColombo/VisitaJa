@@ -24,14 +24,15 @@ public class HorarioVisitaMapper {
         horario.setPatio(patio);
     }
 
-    public static HorarioVisitaResponseDTO toResponseDTO(HorarioVisita horario) {
+        public static HorarioVisitaResponseDTO toResponseDTO(HorarioVisita horario) {
         return new HorarioVisitaResponseDTO(
                 horario.getId(),
                 horario.getDataHora(),
                 horario.getVagasTotais(),
                 horario.getVagasDisponiveis(),
                 horario.getPatio().getId(),
-                horario.getPatio().getNome()
+                horario.getPatio().getNome(),
+                horario.getPatio().getLeilao().getTitulo()
         );
     }
 }

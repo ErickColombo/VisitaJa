@@ -9,6 +9,6 @@ public record HorarioVisitaResponseDTO(
         Integer vagasTotais,
         Integer vagasDisponiveis,
         Long patioId,
-        String patioNome
-
+        String patioNome,
+        String leilaoTitulo
 ) {}
