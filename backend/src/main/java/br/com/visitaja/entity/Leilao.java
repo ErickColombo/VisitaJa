@@ -1,6 +1,7 @@
 package br.com.visitaja.entity;
 
 import br.com.visitaja.enums.StatusLeilao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
