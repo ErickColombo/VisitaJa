@@ -29,4 +29,10 @@ public class HorarioVisitaController {
         HorarioVisita novoHorario = horarioVisitaService.criarHorario(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoHorario);
     }
+
+    @GetMapping("/patio/{patioId}/todos")
+    public ResponseEntity<List<HorarioVisita>> listarTodosDoPatio(@PathVariable Long patioId) {
+        List<HorarioVisita> horarios = horarioVisitaService.listarTodosPorPatio(patioId);
+        return ResponseEntity.ok(horarios);
+    }
 }
