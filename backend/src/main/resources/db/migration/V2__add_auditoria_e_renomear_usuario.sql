@@ -1,0 +1,7 @@
+ALTER TABLE tb_usuario RENAME COLUMN "user" TO username;
+
+ALTER TABLE tb_usuario RENAME CONSTRAINT uk_usuario_user TO uk_usuario_username;
+
+ALTER TABLE tb_leilao ADD COLUMN data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE tb_patio ADD COLUMN data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
