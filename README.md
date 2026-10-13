@@ -27,6 +27,16 @@ API REST responsável pelas regras de negócio, gerenciamento de leilões, páti
 
 Interface web responsável pela interação dos visitantes e administradores com o sistema, permitindo realizar agendamentos, consultar horários e gerenciar as funcionalidades administrativas.
 
+## Executar localmente
+
+Primeiro suba o PostgreSQL e configure `backend/.env` conforme a documentação do backend. Depois, na raiz do projeto, execute:
+
+```bash
+./start.sh
+```
+
+O script inicia o backend em `http://localhost:8080` e o frontend em `http://localhost:5500`. Pressione `Ctrl+C` para encerrar os dois servidores.
+
 ## Documentação
 
 - [Documentação do Backend](./backend/README.md)

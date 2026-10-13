@@ -52,6 +52,14 @@ Changing `ADMIN_PASSWORD` in `.env` does not change an existing user's password.
 
 ## Run
 
+From the project root, start both backend and frontend with:
+
+```bash
+./start.sh
+```
+
+To start only the backend:
+
 ```bash
 bash mvnw spring-boot:run
 ```

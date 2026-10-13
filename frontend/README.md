@@ -9,7 +9,13 @@ The frontend uses plain HTML, CSS, and JavaScript.
 
 ## Run locally
 
-Start the backend first, then serve this directory with a local HTTP server:
+After the PostgreSQL database and backend configuration are ready, start both servers from the project root:
+
+```bash
+./start.sh
+```
+
+Alternatively, start the backend separately and serve only this directory with a local HTTP server:
 
 ```bash
 cd /home/ericklucioh/code/projs/spring/VisitaJa/frontend
