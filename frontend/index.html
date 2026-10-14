@@ -332,7 +332,9 @@
 
 <!-- LÓGICA DE INTEGRAÇÃO COM A API DO SPRING BOOT -->
 <script>
-    const baseUrl = 'http://localhost:8080/api';
+    const baseUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8080/api'
+        : 'https://visitaja-server.onrender.com/api';
 
     const selectLeilao = document.getElementById('leilao');
     const selectPatio = document.getElementById('patio');

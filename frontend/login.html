@@ -92,7 +92,10 @@
 </main>
 
 <script>
-    const apiUrl = 'http://localhost:8080';
+    const apiUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8080'
+        : 'https://visitaja-server.onrender.com';
+
     const loginForm = document.getElementById('login-form');
     const loginError = document.getElementById('login-error');
 
