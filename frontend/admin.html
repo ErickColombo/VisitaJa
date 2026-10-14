@@ -67,6 +67,7 @@
     <nav>
         <button class="nav-btn active" onclick="showTab('agendamentos', this)">Agendamentos</button>
         <button class="nav-btn" onclick="showTab('leiloes', this)">Leilões e Horários</button>
+        <button class="nav-btn" onclick="logout()">Sair</button>
     </nav>
 </aside>
 
@@ -171,6 +172,28 @@
 
 <script>
     const baseUrl = 'http://localhost:8080/api';
+    const token = sessionStorage.getItem('visitaja_token');
+
+    if (!token) {
+        window.location.replace('login.html');
+    }
+
+    function logout() {
+        sessionStorage.removeItem('visitaja_token');
+        window.location.replace('login.html');
+    }
+
+    async function authenticatedFetch(url, options = {}) {
+        const headers = new Headers(options.headers || {});
+        headers.set('Authorization', `Bearer ${token}`);
+
+        const response = await fetch(url, { ...options, headers });
+        if (response.status === 401 || response.status === 403) {
+            logout();
+            throw new Error('Autenticação necessária.');
+        }
+        return response;
+    }
 
     // Navegação principal
     function showTab(tabId, btn) {
@@ -203,7 +226,7 @@
     async function carregarAgendamentos() {
         const tbody = document.getElementById('tabela-agendamentos');
         try {
-            const res = await fetch(`${baseUrl}/agendamentos`);
+            const res = await authenticatedFetch(`${baseUrl}/agendamentos`);
             const dados = await res.json();
 
             tbody.innerHTML = '';
@@ -237,7 +260,7 @@
     async function cancelarAgendamento(id) {
         if(!confirm(`Tem certeza que deseja cancelar o agendamento #${id}? A vaga será devolvida.`)) return;
         try {
-            const res = await fetch(`${baseUrl}/agendamentos/${id}/cancelar`, { method: 'PUT' });
+            const res = await authenticatedFetch(`${baseUrl}/agendamentos/${id}/cancelar`, { method: 'PUT' });
             if(res.ok) { alert('Cancelado com sucesso!'); carregarAgendamentos(); }
             else { alert('Erro ao cancelar.'); }
         } catch (e) { alert('Erro de conexão.'); }
@@ -247,7 +270,7 @@
     async function carregarLeiloes() {
         const tbody = document.getElementById('tabela-leiloes');
         try {
-            const res = await fetch(`${baseUrl}/leiloes`);
+            const res = await authenticatedFetch(`${baseUrl}/leiloes`);
             const dados = await res.json();
 
             tbody.innerHTML = '';
@@ -346,7 +369,7 @@
         };
 
         try {
-            const res = await fetch(`${baseUrl}/leiloes/completo`, {
+            const res = await authenticatedFetch(`${baseUrl}/leiloes/completo`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
