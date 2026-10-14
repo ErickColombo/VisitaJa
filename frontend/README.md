@@ -18,7 +18,7 @@ After the PostgreSQL database and backend configuration are ready, start both se
 Alternatively, start the backend separately and serve only this directory with a local HTTP server:
 
 ```bash
-cd /home/ericklucioh/code/projs/spring/VisitaJa/frontend
+cd /frontend
 python3 -m http.server 5500
 ```
 
