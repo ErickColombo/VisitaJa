@@ -1,5 +1,6 @@
 package br.com.visitaja.controller;
 
+import br.com.visitaja.doc.PatioControllerDoc;
 import br.com.visitaja.dto.patio.PatioRequestDTO;
 import br.com.visitaja.entity.Leilao;
 import br.com.visitaja.entity.Patio;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/patios")
 @RequiredArgsConstructor
-public class PatioController {
+public class PatioController implements PatioControllerDoc {
 
     private final PatioRepository patioRepository;
     private final LeilaoRepository leilaoRepository;

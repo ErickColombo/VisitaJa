@@ -1,5 +1,6 @@
 package br.com.visitaja.controller;
 
+import br.com.visitaja.doc.LeilaoControllerDoc;
 import br.com.visitaja.dto.leilao.LeilaoCompletoRequestDTO;
 import br.com.visitaja.entity.Leilao;
 import br.com.visitaja.enums.StatusLeilao;
@@ -15,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/leiloes")
 @RequiredArgsConstructor
-public class LeilaoController {
+public class LeilaoController implements LeilaoControllerDoc {
 
     private final LeilaoRepository leilaoRepository;
     private final LeilaoService leilaoService;

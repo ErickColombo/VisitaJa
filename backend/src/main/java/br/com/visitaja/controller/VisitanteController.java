@@ -1,5 +1,6 @@
 package br.com.visitaja.controller;
 
+import br.com.visitaja.doc.VisitanteControllerDoc;
 import br.com.visitaja.entity.Visitante;
 import br.com.visitaja.service.VisitanteService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/visitantes")
 @RequiredArgsConstructor
-public class VisitanteController {
+public class VisitanteController implements VisitanteControllerDoc {
 
     private final VisitanteService visitanteService;
 
