@@ -1,5 +1,6 @@
 package br.com.visitaja.controller;
 
+import br.com.visitaja.doc.AgendamentoControllerDoc;
 import br.com.visitaja.dto.agendamento.AgendamentoRequestDTO;
 import br.com.visitaja.dto.agendamento.AgendamentoResponseDTO;
 import br.com.visitaja.dto.horariovisita.HorarioVisitaResponseDTO;
@@ -21,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/agendamentos")
 @RequiredArgsConstructor
-public class AgendamentoController {
+public class AgendamentoController implements AgendamentoControllerDoc {
 
     private final AgendamentoService agendamentoService;
     private final AgendamentoRepository agendamentoRepository;

@@ -1,5 +1,6 @@
 package br.com.visitaja.controller;
 
+import br.com.visitaja.doc.AuthControllerDoc;
 import br.com.visitaja.dto.request.LoginRequest;
 import br.com.visitaja.dto.response.LoginResponse;
 import br.com.visitaja.entity.Usuario;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AuthController implements AuthControllerDoc {
 
     private final AuthenticationManager authenticationManager;
     private final TokenConfig tokenConfig;

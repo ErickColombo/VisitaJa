@@ -1,5 +1,6 @@
 package br.com.visitaja.controller;
 
+import br.com.visitaja.doc.HorarioVisitaControllerDoc;
 import br.com.visitaja.dto.horariovisita.HorarioVisitaRequestDTO;
 import br.com.visitaja.entity.HorarioVisita;
 import br.com.visitaja.service.HorarioVisitaService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/horarios")
 @RequiredArgsConstructor
-public class HorarioVisitaController {
+public class HorarioVisitaController implements HorarioVisitaControllerDoc {
 
     private final HorarioVisitaService horarioVisitaService;
 
