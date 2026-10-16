@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/patios/leilao/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/horarios/patio/*/disponiveis").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/agendamentos/publico/agendar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/ping").permitAll()
                         .requestMatchers("/api/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
